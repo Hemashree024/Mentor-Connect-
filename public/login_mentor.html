@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mentor Login</title>
+    <style>
+        
+        /* Centering the content on the page */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #ffffff;
+            color: #333;
+           
+        }
+
+        .container {
+            display: flex;
+            width: 80%;
+            max-width: 1200px;
+            background-color: #fff;
+            
+            overflow: hidden;
+          
+        }
+
+        .image-section {
+            flex: 1;
+            background-image: url('login.jpg'); /* Replace with your image path */
+            background-size: cover;
+            background-position: center;
+            object-fit: cover; 
+        }
+
+        /* Styling for the container of the login form */
+        .login-container {
+            width: 100%;
+            max-width: 400px;
+            background-color: #ffffff;
+            padding: 30px;
+           
+            text-align: center;
+        }
+
+        /* Heading style */
+        h2 {
+            margin-bottom: 20px;
+            font-size: 2em;
+            color: #333;
+        }
+
+        /* Form label and input styling */
+        label {
+            font-size: 1em;
+            color: #333;
+            display: block;
+            margin: 10px 0 5px;
+            text-align: left;
+        }
+
+        input[type="email"],
+        input[type="password"] {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1em;
+            transition: border-color 0.3s ease;
+        }
+
+        input[type="email"]:focus,
+        input[type="password"]:focus {
+            border-color: #1a73e8;
+            outline: none;
+        }
+
+        /* Button styling */
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #1a73e8;
+            color: #ffffff;
+            border: none;
+            border-radius: 4px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        button:hover {
+            background-color: #1558b8;
+            transform: translateY(-2px);
+        }
+
+        button:active {
+            transform: translateY(1px);
+        }
+
+        /* Paragraph and link styling */
+        p {
+            margin-top: 15px;
+            font-size: 0.9em;
+        }
+
+        p a {
+            color: #1a73e8;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        p a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 480px) {
+            .login-container {
+                padding: 20px; /* Adjust padding for smaller screens */
+            }
+
+            h2 {
+                font-size: 1.5em; /* Adjust heading size */
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="image-section"></div>
+        <div class="login-container">
+    <h2>Mentor Login</h2>
+    <form action="/login_mentor" method="POST">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required><br><br>
+        
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required><br><br>
+        
+        <button type="submit">Login</button>
+    </form>
+    <p>Don't have an account? <a href="signup_mentor.html">Sign up as Mentor</a></p>
+<div>
+</body>
+</html>

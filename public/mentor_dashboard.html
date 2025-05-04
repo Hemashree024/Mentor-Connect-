@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mentor Dashboard</title>
+  <style>
+  body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f6f9;
+      margin: 0;
+      padding: 0;
+    }	
+    .sidebar {
+      width: 220px;
+      height: 100vh;
+      background-color: #1a1a2e;
+      color: #fff;
+      padding: 20px;
+      position: fixed;
+      box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+    }
+    .sidebar h2 {
+      color: #e94560;
+      font-size: 1.8em;
+      margin-bottom: 20px;
+    }
+
+    .sidebar ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .sidebar ul li {
+      padding: 15px;
+      cursor: pointer;
+      color: #ccc;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    .sidebar ul li:hover {
+      background-color: #333;
+      color: #fff;
+    }
+
+    .dashboard {
+      margin-left: 240px;
+      padding: 20px;
+      transition: margin-left 0.3s;
+    }
+
+    .dashboard h1 {
+      font-size: 2em;
+      color: #1a1a2e;
+    }
+
+    #profile {
+      background-color: #fff; 
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      margin-top: 20px;
+      transition: all 0.3s ease;
+    }
+
+    #profile h2 {
+      font-size: 2em;
+      color: #1a1a2e;
+      margin-bottom: 15px;
+    }
+
+    #profileInfo {
+      line-height: 1.6;
+      color: #555;
+    }
+
+    #profileInfo img {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      border: 2px solid #e94560;
+      margin-bottom: 15px;
+    }
+
+    #profileInfo p {
+      margin: 10px 0;
+    }
+
+    #profileInfo a {
+      color: #0b3f8b;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    #profileInfo a:hover {
+      text-decoration: underline;
+    }
+
+    #home, #profile, #requests, #meetings, #settings {
+      display: none;
+    }
+
+    #home.active, #profile.active, #requests.active, #meetings.active, #settings.active {
+      display: block;
+    }
+
+    .request {
+      background-color: #fff;
+      padding: 15px;
+      margin: 10px 0;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .request p {
+      margin: 5px 0;
+    }
+
+    /* Button Styles */
+    button {
+      padding: 10px 20px;
+      margin: 10px;
+      cursor: pointer;
+      font-size: 16px;
+      background-color: #e94560;
+      color: white;
+      border: none;
+      border-radius: 5px;
+    }
+    
+    button:hover {
+      background-color: #d43853;
+    }
+
+    #profileInfo {
+  line-height: 1.6;
+  color: #070606;
+  display: flex;
+  flex-direction: column;
+  gap: 13px; /* Adds space between items */
+}
+
+#profileInfo div {
+  display: flex;
+  align-items: center;
+  gap: 18px; /* Space between image and text */
+}
+
+#profileInfo img {
+  width: 140px; /* Increased size for better visibility */
+  height: 140px; /* Increased size for better visibility */
+  border-radius:60%;
+  border: 2px solid #000000;
+}
+
+#profileInfo h2 {
+  margin: 0;
+  font-size: 1.8em; /* Slightly smaller for better hierarchy */
+  color: #1a1a2e;
+}
+
+#profileInfo h4 {
+  margin: 0;
+  font-size: 1.2em; /* Slightly smaller for better hierarchy */
+  color: #333; /* Darker color for better readability */
+}
+
+#profileInfo p {
+  margin: 0;
+  font-size: 1em; /* Standard font size for details */
+  color: #383838; /* Standard color for text */
+}
+
+#profileInfo a {
+  color: #e94560;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+#profileInfo a:hover {
+  text-decoration: underline;
+}
+
+/* Add a card-like effect for the profile section */
+#profile {
+  background-color: #fff; 
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin-top: 20px;
+  transition: all 0.3s ease;
+}
+
+/* Add a title style for the profile section */
+#profile h2 {
+  font-size: 2em;
+  color: #1a1a2e;
+  margin-bottom: 15px;
+  border-bottom: 2px solid #e94560; /* Underline for emphasis */
+  padding-bottom: 10px; /* Space between title and content */
+}
+
+
+</style>
+</head>
+<body>
+  <div class="sidebar">
+   <h1>Mentor Dashboard</h1>
+    <ul>
+      <li onclick="showSection('home')">Home</li>
+      <li onclick="showSection('profile')">Profile</li>
+      <li onclick="showSection('requests')">Requests</li>
+      <li onclick="showSection('meetings')">Meetings</li>
+      <li onclick="showSection('settings')">Settings</li>
+      <li onclick="logout()">Logout</li>
+    </ul>
+  </div>
+
+  <div class="dashboard">
+    
+
+    <div id="home">
+      <h2>Welcome to your Dashboard!</h2>
+      
+
+     
+    </div>
+
+    <div id="profile" style="display: none;">
+      <h2>Your Profile</h2>
+      <div id="profileInfo">Loading profile information...</div>
+    </div>
+
+    <div id="requests" style="display: none;">
+      <h2>Requests</h2>
+      <div id="requestList">Loading requests...</div>
+
+    </div>
+   
+    <div id="scheduleModal" style="display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0, 0, 0, 0.5); justify-content: center; align-items: center; z-index: 1000;">
+      <div style="background: white; padding: 20px; border-radius: 8px; width: 300px;">
+          <h3>Schedule a Meeting</h3>
+          <p id="menteeNameDisplay"></p>
+          <p id="menteeScheduleInfo"></p> <!-- Add this line -->
+          <form id="scheduleForm">
+              <label for="date">Date:</label><br>
+              <input type="date" id="date" name="date" required><br><br>
+      
+              <label for="time">Time:</label><br>
+              <input type="time" id="time" name="time" required><br><br>
+      
+              <label for="meetingLink">Meeting Link:</label><br>
+              <input type="url" id="meetingLink" name="meetingLink" placeholder="Enter Zoom/Google Meet link" required><br><br>
+      
+              <label for="notes">Notes:</label><br>
+              <textarea id="notes" name="notes" placeholder="Enter any notes or instructions here" rows="4" style="width: 100%;"></textarea><br><br>
+      
+              <button type="submit">Schedule</button>
+              <button type="button" onclick="closeScheduleModal()">Cancel</button>
+          </form>
+      </div>
+  </div>
+  
+  
+
+    
+    <div id="meetings" style="display: none;">
+      <h2>Upcoming Meetings</h2>
+      <p>View scheduled meetings here.</p>
+    </div>
+
+    <div id="settings" style="display: none;">
+      <h2>Settings</h2>
+      <p>Manage account settings here.</p>
+    </div>
+  </div>
+
+  <script>
+    // Fetch mentor profile data
+    function loadProfile() {
+      fetch("/mentor_dashboard")
+        .then((response) => {
+          if (!response.ok) throw new Error("Unauthorized");
+          return response.json();
+        })
+        .then((data) => {
+          document.getElementById("profileInfo").innerHTML = `
+          <div style="display: flex; align-items: center; margin-bottom: 20px;">
+            <img src="/uploads/${data.profilePhoto}" alt="Profile Photo style="width: 80px; height: 80px; border-radius: 50%; border: 2px solid #e94560; margin-right: 28px;">
+            <div>
+              <h2 style="margin: 0; color: #1a1a2e;">${data.firstName} ${data.lastName}</h2>
+              
+          </div>
+        </div>
+            
+             <h4>Email: ${data.email}</h4>
+            <p>Experience: ${data.experience} years</p>
+        <p>Age: ${data.age}</p>
+        <p>Achievements: ${data.achievements}</p>
+         <p>Department: ${data.department}</p>
+        <p>Skills: ${data.skills}</p>
+            <p>Category: ${data.category}</p>
+            `;
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+          document.getElementById("profileInfo").innerHTML = "Error loading profile information.";
+        });
+    }
+
+// Fetch mentor requests
+function loadRequests() {
+    fetch('/api/get_requests')
+        .then(response => response.json())
+        .then(data => {
+            const requestList = document.getElementById("requestList");
+            requestList.innerHTML = '';
+            if (data.length === 0) {
+                requestList.innerHTML = '<p>No new requests.</p>';
+            } else {
+                data.forEach(request => {
+                    // Check if menteeName and menteeEmail are defined
+                    const menteeName = request.menteeName || "Unknown";
+                    const menteeEmail = request.menteeEmail || "Unknown";
+
+                    // Create the request card
+                    const requestDiv = document.createElement('div');
+                    requestDiv.className = 'request';
+                    requestDiv.id = `request-${request._id}`;
+                    requestDiv.innerHTML = `
+                        <p><strong>Mentee Name:</strong> ${menteeName}</p>
+                        <p><strong>Email:</strong> ${menteeEmail}</p>
+                        <p><strong>Message:</strong> ${request.message}</p>
+                        <p><strong>Status:</strong> ${request.status.charAt(0).toUpperCase() + request.status.slice(1)}</p>
+                        <p><em>${new Date(request.timestamp).toLocaleString()}</em></p>
+                    `;
+
+                    // Add action buttons based on request status
+                    if (request.status === 'pending') {
+                        const acceptButton = document.createElement('button');
+                        acceptButton.textContent = 'Accept';
+                        acceptButton.onclick = () => handleRequest(request._id, 'accepted');
+                        requestDiv.appendChild(acceptButton);
+
+                        const declineButton = document.createElement('button');
+                        declineButton.textContent = 'Decline';
+                        declineButton.onclick = () => handleRequest(request._id, 'rejected');
+                        requestDiv.appendChild(declineButton);
+                    } else if (request.status === 'accepted') {
+                        const scheduleButton = document.createElement('button');
+                        scheduleButton.textContent = 'Schedule Meeting';
+                        scheduleButton.style.marginTop = '10px';
+                        scheduleButton.onclick = () => scheduleMeeting(request._id, menteeName);
+                        requestDiv.appendChild(scheduleButton);
+                    }
+
+                    // Append the request card to the list
+                    requestList.appendChild(requestDiv);
+                });
+            }
+        })
+        .catch(error => {
+            console.error("Error:", error);
+            document.getElementById("requestList").innerHTML = "Error loading requests.";
+        });
+}
+
+// Handle accept/decline actions
+function handleRequest(requestId, action) {
+    fetch('/api/handle_request', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ requestId, action }),
+    })
+    .then(response => {
+        if (response.ok) {
+            return response.json();
+        } else {
+            throw new Error('Request update failed: ' + response.statusText);
+        }
+    })
+    .then(data => {
+        if (data.updatedRequest) {
+            // Refresh the requests list to update the UI dynamically
+            loadRequests();
+        }
+    })
+    .catch(error => {
+        console.error("Error:", error);
+        alert("Failed to update request. Error: " + error.message);
+    });
+}
+
+// Schedule a meeting
+function scheduleMeeting(requestId, menteeName) {
+    // Display the schedule modal
+    document.getElementById("scheduleModal").style.display = "flex";
+
+    // Set the mentee's name in the modal for context
+    document.getElementById("menteeNameDisplay").innerText = `Scheduling a meeting with ${menteeName}`;
+
+    // Set up the form submission event
+    const scheduleForm = document.getElementById("scheduleForm");
+    scheduleForm.onsubmit = function(event) {
+        event.preventDefault(); // Prevent form from submitting and page from refreshing
+
+        // Get the values from the input fields
+        const date = document.getElementById("date").value;
+        const time = document.getElementById("time").value;
+        const meetingLink = document.getElementById("meetingLink").value;
+        const notes = document.getElementById("notes").value;
+
+        // Create the meeting details object
+        const meetingDetails = {
+            requestId,
+            date,
+            time,
+            meetingLink,
+            notes
+        };
+
+        // Send the meeting details to the server
+        fetch('/api/schedule_meeting', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(meetingDetails),
+        })
+        .then(response => {
+            if (response.ok) {
+                alert("Meeting scheduled successfully!");
+                closeScheduleModal(); // Close the modal after scheduling
+            } else {
+                throw new Error('Failed to schedule meeting: ' + response.statusText);
+            }
+        })
+        .catch(error => {
+            console.error("Error:", error);
+            alert("Failed to schedule meeting. Error: " + error.message);
+        });
+    };
+     // Show the modal
+     modal.style.display = "flex";
+}
+
+// Function to close the modal
+function closeScheduleModal() {
+    const modal = document.getElementById("scheduleModal");
+    modal.style.display = "none";
+}
+
+// Attach event listener to the Cancel button
+document.getElementById("cancelBtn").onclick = closeScheduleModal;
+
+   // Show specific section
+   function showSection(section) {
+      ['home', 'profile', 'requests', 'meetings', 'settings'].forEach(sec => {
+        document.getElementById(sec).style.display = sec === section ? 'block' : 'none';
+      });
+      if (section === "requests") loadRequests(); // Load requests when the section is shown
+      if (section === "profile") loadProfile(); // Load profile when the section is shown
+    }
+
+    // Logout function
+    function logout() {
+      window.location.href = "/login_mentor.html";
+    }
+    
+
+  </script>
+</body>
+</html>

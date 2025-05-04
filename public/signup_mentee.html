@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up as Mentee</title>
+    <style>
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #444;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+
+        form {
+            background-color: #ffffff;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+            font-size: 14px;
+            color: #555;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        input[type="email"],
+        input[type="password"],
+        input[type="file"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-size: 14px;
+            transition: border-color 0.3s ease;
+        }
+
+        input[type="text"]:focus,
+        input[type="number"]:focus,
+        input[type="email"]:focus,
+        input[type="password"]:focus,
+        input[type="file"]:focus {
+            border-color: #007bff;
+            outline: none;
+        }
+
+        .form-group {
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+        }
+
+        .form-group div {
+            flex: 1;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h2>Sign Up as Mentee</h2>
+    <form action="/signup_mentee" method="POST" enctype="multipart/form-data">
+        <div class="profile-upload">
+        <label>Profile Photo:</label>
+        <input type="file" name="profilePhoto" required><br>
+    </div>
+    <div class="form-group">
+        <div>
+        <label>First Name:</label>
+        <input type="text" name="firstName" required><br>
+    </div>
+    <div>
+        <label>Last Name:</label>
+        <input type="text" name="lastName" required><br>
+    </div>
+</div>
+       
+        <div class="form-group">
+            <div>
+        <label>Email:</label>
+        <input type="email" name="email" required><br>
+    </div>
+<div>
+       
+        <label>Password:</label>
+        <input type="password" name="password" required><br>
+    </div>
+</div>
+        <label>Age:</label>
+        <input type="number" name="age" required><br>
+        <!-- Add the new fields here -->
+  <label>Scope:</label>
+  <input type="text"  name="scope" required><br>
+
+  <div class="form-group">
+    <div>
+  <label>Department:</label>
+  <input type="text"  name="department" required><br>
+</div>
+<div>
+       
+  <label>Semester:</label>
+  <input type="text"  name="semester" required><br>
+</div>
+</div>
+  <label>Phone Number:</label>
+  <input type="text"  name="phone" required><br>
+        <button type="submit">Sign Up</button>
+    </form>
+</body>
+</html>
