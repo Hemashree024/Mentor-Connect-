@@ -25,8 +25,7 @@ Mentor mentee/
 - 🗂️ Profile management for both mentors and mentees
 - 📤 File upload support (e.g., profile pictures, documents)
 - 📅 Availability scheduling
-- 💬 Chat or query functionality (if implemented)
-- 🔐 Secure authentication and data management
+
 
 ---
 
